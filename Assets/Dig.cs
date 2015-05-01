@@ -53,7 +53,6 @@ public class Dig : MonoBehaviour {
         }
         if (Input.GetMouseButton(0))
         {
-            Debug.Log("hi");
             // Build a ray based on the current mouse position
             Vector2 mousePos = Input.mousePosition;
             Ray ray = Camera.main.ScreenPointToRay(new Vector3(mousePos.x, mousePos.y, 0));
@@ -68,24 +67,64 @@ public class Dig : MonoBehaviour {
                 int range = 2;
                 AddVoxels((int)pickResult.volumeSpacePos.x, (int)pickResult.volumeSpacePos.y, (int)pickResult.volumeSpacePos.z, range);
             }
-            Debug.Log("bye");
         }
     }
-    void AddVoxels(int xPos, int yPos, int zPos, int range)
+    void AddVoxels(int xPos, int yPos, int zPos, int range = 2)
     {
-        float noiseScale = 32.0f;
+
+        // Initialise outside the loop, but we'll use it later.
+        int rangeSquared = range * range;
+
+        // Iterage over every voxel in a cubic region defined by the received position (the center) and
+        // the range. It is quite possible that this will be hundreds or even thousands of voxels.
+        for (int z = zPos - range; z < zPos + range; z++)
+        {
+            for (int y = yPos - range; y < yPos + range; y++)
+            {
+                for (int x = xPos - range; x < xPos + range; x++)
+                {
+                    // Compute the distance from the current voxel to the center of our explosion.
+                    int xDistance = x + xPos;
+                    int yDistance = y + yPos;
+                    int zDistance = z + zPos;
+
+                    float noiseScale = 32.0f;
+                    float invNoiseScale = 1.0f / noiseScale;
+
+                    float sampleX = (float)xPos * invNoiseScale;
+                    float sampleY = (float)yPos * invNoiseScale;
+                    float sampleZ = (float)zPos * invNoiseScale;
+                    MaterialSet materialSet = new MaterialSet();
+                    materialSet.weights[0] = (byte)255;
+
+                    // Working with squared distances avoids costly square root operations.
+                    int distSquared = xDistance * xDistance + yDistance * yDistance + zDistance * zDistance;
+
+                    // We're iterating over a cubic region, but we want our explosion to be spherical. Therefore 
+                    // we only further consider voxels which are within the required range of our explosion center. 
+                    // The corners of the cubic region we are iterating over will fail the following test.
+                    if (distSquared > rangeSquared)
+                    {
+                        terrainVolume.data.SetVoxel(x, y, z, materialSet);
+                    }
+                }
+            }
+        }
+
+        range += 2;
+
+        //TerrainVolumeEditor.BlurTerrainVolume(terrainVolume, new Region(xPos - range, yPos - range, zPos - range, xPos + range, yPos + range, zPos + range));
+        /*float noiseScale = 32.0f;
         float invNoiseScale = 1.0f / noiseScale;
+        
         float sampleX = (float)xPos * invNoiseScale;
         float sampleY = (float)yPos * invNoiseScale;
         float sampleZ = (float)zPos * invNoiseScale;
-        float simplexNoiseValue = SimplexNoise.Noise.Generate(sampleX, sampleY, sampleZ);
-        simplexNoiseValue += 1.0f; // Now it's 0.0 to 2.0
-        simplexNoiseValue *= 127.5f; // Now it's 0.0 to 255.0
         MaterialSet materialSet = new MaterialSet();
-        materialSet.weights[0] = (byte)simplexNoiseValue;
-        terrainVolume.data.SetVoxel(xPos, yPos, zPos, materialSet);
+        materialSet.weights[0] = (byte)255;
+        terrainVolume.data.SetVoxel(xPos, yPos, zPos, materialSet);*/
     }
-    void DestroyVoxels(int xPos, int yPos, int zPos, int range)
+    void DestroyVoxels(int xPos, int yPos, int zPos, int range = 2)
     {
         // Initialise outside the loop, but we'll use it later.
         int rangeSquared = range * range;
