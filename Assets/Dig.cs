@@ -34,50 +34,16 @@ public class Dig : MonoBehaviour {
 
         // If the mouse btton is down and it was not down last frame
         // then we consider this a click, and do our destruction.
-        if (Input.GetMouseButton(1))
+        if(Input.GetMouseButton(0))
         {
-            Vector2 mousePos = Input.mousePosition;
-            placeblock(mousePos.x, mousePos.y, 0);
-            /*
-                // Build a ray based on the current mouse position
-                Vector2 mousePos = Input.mousePosition;
-                Ray ray = Camera.main.ScreenPointToRay(new Vector3(mousePos.x, mousePos.y, 0));
-
-                // Perform the raycasting.
-                PickSurfaceResult pickResult;
-                bool hit = Picking.PickSurface(terrainVolume, ray, 1000.0f, out pickResult);
-
-                // If we hit a solid voxel then create an explosion at this point.
-                if (hit)
-                {
-
-                    int range = 2;
-                    DestroyVoxels((int)pickResult.volumeSpacePos.x, (int)pickResult.volumeSpacePos.y, (int)pickResult.volumeSpacePos.z, range);
-                }
-             */
-        }
-        if (Input.GetMouseButton(0))
-        {
-            // Build a ray based on the current mouse position
-            Vector2 mousePos = Input.mousePosition;
-            Ray ray = Camera.main.ScreenPointToRay(new Vector3(mousePos.x, mousePos.y, 0));
-
-            // Perform the raycasting.
-            PickSurfaceResult pickResult;
-            bool hit = Picking.PickSurface(terrainVolume, ray, 1000.0f, out pickResult);
-
-            // If we hit a solid voxel then create an explosion at this point.
-            if (hit)
-            {
-                int range = 2;
-                AddVoxels((int)pickResult.volumeSpacePos.x, (int)pickResult.volumeSpacePos.y, (int)pickResult.volumeSpacePos.z, range);
-            }
+            placeblock(Input.mousePosition.x,Input.mousePosition.y,Input.mousePosition.z);
         }
     }
     public void DigFunction(Vector3 digWhere) 
     {
-        Ray ray = Camera.main.ScreenPointToRay(new Vector3(digWhere.x, digWhere.y, 0));
 
+        Ray ray = Camera.main.ScreenPointToRay(new Vector3(digWhere.x, digWhere.y, digWhere.z));
+        Debug.DrawRay(Camera.main.transform.position,digWhere,Color.red,10000000);
         // Perform the raycasting.
         PickSurfaceResult pickResult;
         bool hit = Picking.PickSurface(terrainVolume, ray, 1000.0f, out pickResult);
