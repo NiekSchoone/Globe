@@ -71,22 +71,23 @@ public class Dig : MonoBehaviour {
     }
     public void DigFunction(Vector3 digWhere) 
     {
-        Ray ray = Camera.main.ScreenPointToRay(new Vector3(digWhere.x, digWhere.y, 0));
+        
+        Ray ray = new Ray(Camera.main.transform.position, digWhere - Camera.main.transform.position);//Camera.main.ScreenPointToRay(new Vector3(digWhere.x, digWhere.y, 0));
 
         // Perform the raycasting.
         PickSurfaceResult pickResult;
         bool hit = Picking.PickSurface(terrainVolume, ray, 1000.0f, out pickResult);
-
         // If we hit a solid voxel then create an explosion at this point.
         if (hit)
         {
+            
             int range = 2;
             DestroyVoxels((int)pickResult.volumeSpacePos.x, (int)pickResult.volumeSpacePos.y, (int)pickResult.volumeSpacePos.z, range);
         }
     }
     public void Build(Vector3 buildWhere) 
     {
-        Ray ray = Camera.main.ScreenPointToRay(new Vector3(buildWhere.x, buildWhere.y, 0));
+        Ray ray = new Ray(Camera.main.transform.position, buildWhere - Camera.main.transform.position);//Camera.main.ScreenPointToRay(new Vector3(buildWhere.x, buildWhere.y, 0));
 
         // Perform the raycasting.
         PickSurfaceResult pickResult;
@@ -95,13 +96,14 @@ public class Dig : MonoBehaviour {
         // If we hit a solid voxel then create an explosion at this point.
         if (hit)
         {
+            
             int range = 2;
             AddVoxels((int)pickResult.volumeSpacePos.x, (int)pickResult.volumeSpacePos.y, (int)pickResult.volumeSpacePos.z, range);
         }
     }
     void AddVoxels(int xPos, int yPos, int zPos, int range = 2)
     {
-
+        
         // Initialise outside the loop, but we'll use it later.
         int rangeSquared = range * range;
 

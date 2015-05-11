@@ -5,11 +5,12 @@ public class TrackFingerMovement : MonoBehaviour {
 
 
     private HandModel handModel;
-    private Dig digOrBuildController;
-
+    public Dig digOrBuildController;
+    public GameObject handcontroller;
 	// Use this for initialization
 	void Start () 
     {
+        handcontroller = GameObject.FindGameObjectWithTag("HandController");
         handModel = GetComponent<HandModel>();
         digOrBuildController = GameObject.FindGameObjectWithTag("GameController").GetComponent<Dig>();
 	}
