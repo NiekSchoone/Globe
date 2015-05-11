@@ -1,23 +1,8 @@
 ********************************************************************************
 *                             Initializing Cubiquity                           *
 ********************************************************************************
-[11:38:55, Info   ]: Creating voxel database from 'D:/Github/Globe/Assets/StreamingAssets/Cubiquity/VoxelDatabases/Examples/Planet.vdb'
-[11:38:59, Info   ]: Creating voxel database from 'D:/Github/Globe/Assets/StreamingAssets/Cubiquity/VoxelDatabases/Examples/Planet.vdb'
-[11:39:02, Info   ]: Creating voxel database from 'D:/Github/Globe/Assets/StreamingAssets/Cubiquity/VoxelDatabases/Examples/Planet.vdb'
-[11:39:17, Info   ]: Creating voxel database from 'D:/Github/Globe/Assets/StreamingAssets/Cubiquity/VoxelDatabases/Examples/Planet.vdb'
-[11:39:21, Info   ]: Creating voxel database from 'D:/Github/Globe/Assets/StreamingAssets/Cubiquity/VoxelDatabases/Examples/Planet.vdb'
-[11:39:23, Info   ]: Creating voxel database from 'D:/Github/Globe/Assets/StreamingAssets/Cubiquity/VoxelDatabases/Examples/Planet.vdb'
-[11:40:41, Info   ]: Creating voxel database from 'D:/Github/Globe/Assets/StreamingAssets/Cubiquity/VoxelDatabases/Examples/Planet.vdb'
-[11:40:58, Info   ]: Creating voxel database from 'D:/Github/Globe/Assets/StreamingAssets/Cubiquity/VoxelDatabases/Examples/Planet.vdb'
-[11:41:13, Info   ]: Creating voxel database from 'D:/Github/Globe/Assets/StreamingAssets/Cubiquity/VoxelDatabases/Examples/Planet.vdb'
-[11:41:50, Info   ]: Creating voxel database from 'D:/Github/Globe/Assets/StreamingAssets/Cubiquity/VoxelDatabases/Examples/Planet.vdb'
-[11:41:58, Info   ]: Creating voxel database from 'D:/Github/Globe/Assets/StreamingAssets/Cubiquity/VoxelDatabases/Examples/Planet.vdb'
-[11:42:03, Info   ]: Creating voxel database from 'D:/Github/Globe/Assets/StreamingAssets/Cubiquity/VoxelDatabases/Examples/Planet.vdb'
-[11:42:13, Info   ]: Creating voxel database from 'D:/Github/Globe/Assets/StreamingAssets/Cubiquity/VoxelDatabases/Examples/Planet.vdb'
-[11:42:24, Info   ]: Creating voxel database from 'D:/Github/Globe/Assets/StreamingAssets/Cubiquity/VoxelDatabases/Examples/Planet.vdb'
-[11:42:50, Info   ]: Creating voxel database from 'D:/Github/Globe/Assets/StreamingAssets/Cubiquity/VoxelDatabases/Examples/Planet.vdb'
-[11:43:07, Info   ]: Creating voxel database from 'D:/Github/Globe/Assets/StreamingAssets/Cubiquity/VoxelDatabases/Examples/Planet.vdb'
-[11:53:31, Info   ]: Creating voxel database from 'D:/Github/Globe/Assets/StreamingAssets/Cubiquity/VoxelDatabases/Examples/Planet.vdb'
-[10:53:32, Info   ]: Resizing compressed data buffer to 288486bytes. This should only happen once
-[10:53:33, Info   ]: Creating voxel database from 'D:/Github/Globe/Assets/StreamingAssets/Cubiquity/VoxelDatabases/Examples/Planet.vdb'
-[10:53:49, Info   ]: Creating voxel database from 'D:/Github/Globe/Assets/StreamingAssets/Cubiquity/VoxelDatabases/Examples/Planet.vdb'
+[07:39:54, Info   ]: Creating voxel database from 'D:/Github/Globe/Assets/StreamingAssets/Cubiquity/VoxelDatabases/Examples/Planet.vdb'
+[07:40:01, Info   ]: Creating voxel database from 'D:/Github/Globe/Assets/StreamingAssets/Cubiquity/VoxelDatabases/Examples/Planet.vdb'
+[07:40:56, Info   ]: Resizing compressed data buffer to 288486bytes. This should only happen once
+[07:40:56, Info   ]: Creating voxel database from 'D:/Github/Globe/Assets/StreamingAssets/Cubiquity/VoxelDatabases/Examples/Planet.vdb'
+[07:41:53, Info   ]: Creating voxel database from 'D:/Github/Globe/Assets/StreamingAssets/Cubiquity/VoxelDatabases/Examples/Planet.vdb'
