@@ -173,11 +173,13 @@ public class Dig : MonoBehaviour {
         PickSurfaceResult pickResult;
         bool hit = Picking.PickSurface(terrainVolume, ray, 1000.0f, out pickResult);
 
-        // If we hit a solid voxel then create an explosion at this point.
         if (hit)
         {
-            Vector3 pos = new Vector3((int)pickResult.volumeSpacePos.x, (int)pickResult.volumeSpacePos.y, (int)pickResult.volumeSpacePos.z);
-            Instantiate(cube, pos, transform.rotation);
+            Vector3 pos = new Vector3((int)pickResult.worldSpacePos.x, (int)pickResult.worldSpacePos.y, (int)pickResult.worldSpacePos.z);
+
+            GameObject Obj = Instantiate(cube, pos, transform.rotation) as GameObject;
+            Obj.transform.LookAt(transform.position);
+           
         }
     }
 }
