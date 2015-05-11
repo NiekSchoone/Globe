@@ -6,7 +6,7 @@ using Cubiquity;
 public class Dig : MonoBehaviour {
 
     private TerrainVolume terrainVolume;
-
+    public Transform cube;
     // Bit of a hack - we want to detect mouse clicks rather than the mouse simply being down,
     // but we can't use OnMouseDown because the voxel terrain doesn't have a collider (the
     // individual pieces do, but not the parent). So we define a click as the mouse being down
@@ -36,6 +36,9 @@ public class Dig : MonoBehaviour {
         // then we consider this a click, and do our destruction.
         if (Input.GetMouseButton(1))
         {
+            Vector2 mousePos = Input.mousePosition;
+            placeblock(mousePos.x, mousePos.y, 0);
+            /*
                 // Build a ray based on the current mouse position
                 Vector2 mousePos = Input.mousePosition;
                 Ray ray = Camera.main.ScreenPointToRay(new Vector3(mousePos.x, mousePos.y, 0));
@@ -47,9 +50,11 @@ public class Dig : MonoBehaviour {
                 // If we hit a solid voxel then create an explosion at this point.
                 if (hit)
                 {
+
                     int range = 2;
                     DestroyVoxels((int)pickResult.volumeSpacePos.x, (int)pickResult.volumeSpacePos.y, (int)pickResult.volumeSpacePos.z, range);
                 }
+             */
         }
         if (Input.GetMouseButton(0))
         {
@@ -80,6 +85,7 @@ public class Dig : MonoBehaviour {
         // If we hit a solid voxel then create an explosion at this point.
         if (hit)
         {
+            
             int range = 2;
             DestroyVoxels((int)pickResult.volumeSpacePos.x, (int)pickResult.volumeSpacePos.y, (int)pickResult.volumeSpacePos.z, range);
         }
@@ -192,5 +198,20 @@ public class Dig : MonoBehaviour {
         TerrainVolumeEditor.BlurTerrainVolume(terrainVolume, new Region(xPos - range, yPos - range, zPos - range, xPos + range, yPos + range, zPos + range));
         //TerrainVolumeEditor.BlurTerrainVolume(terrainVolume, new Region(xPos - range, yPos - range, zPos - range, xPos + range, yPos + range, zPos + range));
         //TerrainVolumeEditor.BlurTerrainVolume(terrainVolume, new Region(xPos - range, yPos - range, zPos - range, xPos + range, yPos + range, zPos + range));
+    }
+    void placeblock(float xPos, float yPos, float zPos)
+    {
+        Ray ray = Camera.main.ScreenPointToRay(new Vector3(xPos, yPos, 0));
+
+        // Perform the raycasting.
+        PickSurfaceResult pickResult;
+        bool hit = Picking.PickSurface(terrainVolume, ray, 1000.0f, out pickResult);
+
+        // If we hit a solid voxel then create an explosion at this point.
+        if (hit)
+        {
+            Vector3 pos = new Vector3((int)pickResult.volumeSpacePos.x, (int)pickResult.volumeSpacePos.y, (int)pickResult.volumeSpacePos.z);
+            Instantiate(cube, pos, transform.rotation);
+        }
     }
 }
