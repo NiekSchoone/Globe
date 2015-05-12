@@ -42,7 +42,6 @@ public class Dig : MonoBehaviour {
     public void DigFunction(Vector3 digWhere) 
     {
         Ray ray = new Ray(Camera.main.transform.position, digWhere - Camera.main.transform.position);//Camera.main.ScreenPointToRay(new Vector3(digWhere.x, digWhere.y, 0));
-
         // Perform the raycasting.
         PickSurfaceResult pickResult;
         bool hit = Picking.PickSurface(terrainVolume, ray, 1000.0f, out pickResult);
@@ -176,9 +175,7 @@ public class Dig : MonoBehaviour {
         {
             Vector3 pos = new Vector3((int)pickResult.worldSpacePos.x, (int)pickResult.worldSpacePos.y, (int)pickResult.worldSpacePos.z);
 
-            GameObject Obj = Instantiate(cube, pos, transform.rotation) as GameObject;
-            Obj.transform.LookAt(transform.position);
-           
+            Instantiate(cube, pos, transform.rotation);
         }
     }
 }
