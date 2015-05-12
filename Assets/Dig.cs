@@ -110,19 +110,6 @@ public class Dig : MonoBehaviour {
                 }
             }
         }
-
-        range += 2;
-
-        //TerrainVolumeEditor.BlurTerrainVolume(terrainVolume, new Region(xPos - range, yPos - range, zPos - range, xPos + range, yPos + range, zPos + range));
-        /*float noiseScale = 32.0f;
-        float invNoiseScale = 1.0f / noiseScale;
-        
-        float sampleX = (float)xPos * invNoiseScale;
-        float sampleY = (float)yPos * invNoiseScale;
-        float sampleZ = (float)zPos * invNoiseScale;
-        MaterialSet materialSet = new MaterialSet();
-        materialSet.weights[0] = (byte)255;
-        terrainVolume.data.SetVoxel(xPos, yPos, zPos, materialSet);*/
     }
     void DestroyVoxels(int xPos, int yPos, int zPos, int range = 2)
     {
